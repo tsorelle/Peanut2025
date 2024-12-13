@@ -1,4 +1,8 @@
-# Peanut Installation Structure and CMS Modifiction Requirements
+# Peanut Base Structure
+
+In this document we want to describle the essential requirements, directory structure and files
+that make up a Peanut installation on a CMS host.
+
 **Terminology disambiguation:** The term "package" is used in ConcreteCMS to refer to installable modules,
 located in the 'packages' directory, that implement themes, blocks and other add-on items.
 
