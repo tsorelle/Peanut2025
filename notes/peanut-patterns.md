@@ -52,19 +52,24 @@ TServiceCommand subclass and executes its "run()" method.
 The request object is empty in this case but if the service needs input it would contain
 the input values.
 
-### Service Command
+### Service Command and a "datamanager"
 
 The GetMailboxListCommand receives the request and fires the run() method, 
 pnut/packages/mailboxes/src/services/GetMailboxListCommand.php, line 70.
 
-### A "data manager"
 On line 83 of GetMailboxListCommand we retrieve the list from a "data manager" class, TPostOffice,
 and insert the result in a response object;
-````PHP
-    $manager = TPostOffice::GetMailboxManager();
-    $response = new \stdClass();
-    $response->list = $manager->getMailboxes(true);
+````php
+    protected function run()
+    {
+    ...
+        $manager = TPostOffice::GetMailboxManager();
+        $response = new \stdClass();
+        $response->list = $manager->getMailboxes(true);
+    ...        
+    }
 ````
+
 ### A "repository"
 The TPostOffice class creates a repository class, MailboxesRepository.  The MailboxesRepository->getMailboxList() 
 method calls on its parent class to execute a statement.
@@ -79,13 +84,6 @@ $stmt = $this->executeStatement($sql);
 These methods rely on the PHP PDO framework ([PHP Data Objects](https://www.php.net/manual/en/book.pdo.php)) to execute a query on the database and 
 format the result as an array of objects.
 
-### A ServiceCommand response
-This array is returned via the intervening methods to GetMailboxListCommand 
-where it is wrapped in the response object (line 84).
-````php
-        $response = new \stdClass();
-        $response->list = $manager->getMailboxes(true);
-````
 ### ViewModel and View
 The response object is returned to MailboxListObservable, on line 63 where it 
 is bound to the view
