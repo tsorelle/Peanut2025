@@ -131,8 +131,8 @@ should never be posted in a public location such as a public git repository.
 
 ## Peanut paths
 ViewModels use a convention to referece files and resources loaded in the init() function
-and elsewhere. These files are loaded using application.loadResources, application.registerComponent and
-other load funtions. See KnockoutHelper.ts in core.<br>
+and elsewhere. These files are loaded using application.loadResources, application.registerComponent 
+PeanutLoader.loadViewModel and other load funtions. See KnockoutHelper.ts in core.<br>
 E.g.<br>
 ````typescript
 application.loadResources(
@@ -234,7 +234,6 @@ newDiv.innerHTML =
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-12\"   >\n" +
     "            <div id=\"service-messages-container\"><service-messages>" +
-    "           <p>TESTING</p>" +
     "          </service-messages></div>\n" +
     "        </div>\n" +
     "    </div>\n" +
